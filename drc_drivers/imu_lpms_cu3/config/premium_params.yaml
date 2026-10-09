@@ -1,7 +1,0 @@
-imu_lpms_cu3_node:
-  ros__parameters:
-    identifier: 1
-    update_rate: 200
-    double_precision: false
-    serial_baudrate: 1000000
-    serial_port: "/dev/ttyUSB0"

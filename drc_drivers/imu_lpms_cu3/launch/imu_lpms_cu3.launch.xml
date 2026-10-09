@@ -1,8 +1,0 @@
-<launch>
-    <arg name="imu_model" default="lpms" />
-    <arg name="config_file" default="$(find-pkg-share imu_lpms_cu3)/config/$(var imu_model)_params.yaml" />
-
-    <node name="imu_lpms_cu3_node" pkg="imu_lpms_cu3" exec="imu_lpms_cu3_node" output="screen">
-        <param from="$(var config_file)" />
-    </node>
-</launch>

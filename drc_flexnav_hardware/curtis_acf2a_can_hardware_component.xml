@@ -1,9 +1,0 @@
-<library path="curtis_acf2a_can_hardware_component">
-  <class name="drc_flexnav_hardware/Curtis_ACF2A_Can_HW_Component"
-         type="drc_flexnav_hardware::Curtis_ACF2A_Can_HW_Component"
-         base_class_type="hardware_interface::SystemInterface">
-    <description>
-      The ros2_control interface with curtis motor ACF2A CAN.
-    </description>
-  </class>
-</library>

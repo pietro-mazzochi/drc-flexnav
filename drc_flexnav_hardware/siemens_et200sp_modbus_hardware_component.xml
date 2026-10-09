@@ -1,9 +1,0 @@
-<library path="siemens_et200sp_modbus_hardware_component">
-  <class name="drc_flexnav_hardware/Siemens_ET200SP_Modbus_HW_Component"
-         type="drc_flexnav_hardware::Siemens_ET200SP_Modbus_HW_Component"
-         base_class_type="hardware_interface::SystemInterface">
-    <description>
-      The ros2_control interface with Siemens PLC ET200SP via Modbus.
-    </description>
-  </class>
-</library>

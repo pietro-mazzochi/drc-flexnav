@@ -1,7 +1,0 @@
-<library path="odometry_broadcaster">
-  <class name="drc_flexnav_controllers/OdometryBroadcaster" type="drc_flexnav_controllers::OdometryBroadcaster" base_class_type="controller_interface::ControllerInterface">
-  <description>
-    ros2_control odometry broadcaster.
-  </description>
-  </class>
-</library>

@@ -1,7 +1,0 @@
-<library path="robot_load_controller">
-  <class name="drc_flexnav_controllers/RobotLoadController" type="drc_flexnav_controllers::RobotLoadController" base_class_type="controller_interface::ControllerInterface">
-  <description>
-    DRC Flexnav1500 load ros2_control controller.
-  </description>
-  </class>
-</library>

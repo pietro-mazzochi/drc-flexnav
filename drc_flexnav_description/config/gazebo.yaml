@@ -1,5 +1,0 @@
-/gazebo:
-  ros__parameters:
-    # This is the /clock update rate
-    publish_rate: 1000.0
-    update_rate: 1000

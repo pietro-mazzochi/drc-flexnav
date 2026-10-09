@@ -1,6 +1,0 @@
-<launch>
-	<arg name="odometry_broadcaster_config" default="$(find-pkg-share drc_flexnav_controllers)/config/odometry_broadcaster.yaml"/>
-
-	<node name="odometry_broadcaster_spawner" pkg="controller_manager" exec="spawner"
-		args="-t drc_flexnav_controllers/OdometryBroadcaster -p $(var odometry_broadcaster_config) odometry_broadcaster"/>
-</launch>
