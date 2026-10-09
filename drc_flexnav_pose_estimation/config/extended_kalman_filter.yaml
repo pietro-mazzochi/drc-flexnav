@@ -1,0 +1,31 @@
+extended_kalman_filter_node:
+  ros__parameters:
+    wheel_separation: 1.0945
+    wheel_radius: 0.125
+    theta_C_mag: 2.56e-01
+    epsilon: 1.0e-50
+    estimation_topic_name: "/odom"
+    estimation_frame_id: "odom"
+    base_frame_id: "base_footprint"
+    publish_odom_to_tf: true
+    x_initial: 0.0
+    y_initial: 0.0
+    theta_initial: 0.0
+    v_initial: 0.0
+    omega_initial: 0.0
+    baccx: 0.0
+    baccy: 0.0
+    baccz: 0.0
+    bgirox: 0.0
+    bgiroy: 0.0
+    bgiroz: 0.0
+    use_joint_states: true
+    left_wheel_name: "left_wheel_joint"
+    right_wheel_name: "right_wheel_joint"
+    joint_states_topic_name: "/joint_states"
+    left_encoder_vel_topic_name: "/left_encoder"
+    right_encoder_vel_topic_name: "/right_encoder"
+    magnetometer_topic_name: "/imu_sensor/magnetic_field"
+    imu_topic_name: "/imu_sensor/imu"
+    left_wheel_cmd_topic_name: "/left_wheel_joint_effort_controller/commands"
+    right_wheel_cmd_topic_name: "/right_wheel_joint_effort_controller/commands"

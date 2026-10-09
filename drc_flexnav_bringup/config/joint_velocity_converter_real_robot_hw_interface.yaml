@@ -1,0 +1,7 @@
+base2joint_velocity_converter_node:
+  ros__parameters:
+    wheel_to_robot_center: 0.54725
+    wheel_radius: 0.125
+    left_wheel_vel_topic: "/left_wheel_joint_effort_controller/commands"
+    right_wheel_vel_topic: "/right_wheel_joint_effort_controller/commands"
+    use_float32: false

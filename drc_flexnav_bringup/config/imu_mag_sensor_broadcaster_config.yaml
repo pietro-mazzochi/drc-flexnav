@@ -1,0 +1,11 @@
+imu_sensor:
+  ros__parameters:
+    type: "imu_mag_sensor_broadcaster/ImuMagSensorBroadcaster"
+    sensor_name: "imu_sensor"
+    frame_id: "imu_sensor_link"
+    static_covariance_orientation: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_angular_velocity: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_linear_acceleration: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    magnetometer_sensor_name: "mag_sensor"
+    magnetometer_frame_id: "magno_sensor_link"
+    static_covariance_magnetic_field: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]

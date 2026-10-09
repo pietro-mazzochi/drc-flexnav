@@ -1,0 +1,81 @@
+mrac_controller:
+  ros__parameters:
+    type: drc_flexnav_controllers/MRACController
+    command_joints:
+      - left_motor_joint
+      - right_motor_joint
+    interface_name: effort
+
+    adaptive: true
+    # epsilon is the adaption rate
+    # smaller epsilon implies faster adaptation
+    # the first value is for linear parameters (kv, k5, k7)
+    # the second value is for angular parameters (kw, k6, k8)
+    epsilon: [1E-1, 8E-2]
+
+    # parameters must be initialized close to actual values
+    # the higher the covariance, the less accurate are the parameters
+    #                      [kv  , kw  , k5 , k6 , k7  , k8  ]
+    model_parameters:      [-0.5, -0.6, 0.0, 0.0, 0.16, 0.25]
+    parameters_covariance: [1E0 , 1E0 , 2E0, 2E0, 5E-1, 5E-1]
+
+    # alpha is the reference model pole
+    # bigger alpha implies faster response
+    # the first value is for linear velocity tracking
+    # the second value is for angular velocity tracking
+    alpha: [2E0, 2.5E0]
+
+    effort_limit: [-5.0, 5.0]    # [Nm]
+    linear_velocity_limit: 1.0   # [m/s]
+    angular_velocity_limit: 0.75 # [rad/s]
+
+    base_frame_id: flexnav_origin
+    priority: 99
+    odometer_name: odometer
+    odometer_interfaces:
+      - twist.linear.x
+      - twist.linear.y
+      - twist.angular.z
+      - pose.orientation.x
+      - pose.orientation.y
+      - pose.orientation.z
+      - pose.orientation.w
+    odom_topic: "/odom"
+    use_odom_topic: false
+    nmt_interface_name: nmt_state
+    motor_configured_interface_name: motor_configured
+
+joint_state_broadcaster:
+  ros__parameters:
+    type: joint_state_broadcaster/JointStateBroadcaster
+
+odometry_broadcaster:
+  ros__parameters:
+    type: "drc_flexnav_controllers/OdometryBroadcaster"
+    sensor_name: odometer
+    sensor_interfaces:
+      - pose.position.x
+      - pose.position.y
+      - pose.position.z
+      - pose.orientation.x
+      - pose.orientation.y
+      - pose.orientation.z
+      - pose.orientation.w
+      - twist.linear.x
+      - twist.linear.y
+      - twist.linear.z
+      - twist.angular.x
+      - twist.angular.y
+      - twist.angular.z
+    odom_topic: /odom
+    tf_topic: /tf
+    publish_odom_to_tf: True
+    odom_frame_id: odom
+    base_frame_id: base
+    gpio_name: siemens_et200sp_gpio
+    gpio_state_interfaces:
+      - time_stamp
+      - delta_t
+      - plc_connected
+      - last_plc_read_write_time
+    use_siemens_time_stamp: false

@@ -1,0 +1,22 @@
+<launch>
+
+    <arg name="gain" default="0.1" />
+    <arg name="vel_topic" default="/base_vel_cmd" />
+    <!-- Launch the joy node -->
+    <node
+        pkg="joy"
+        exec="joy_node"
+        name="joy_node"
+        output="screen">
+    </node>
+
+    <!-- Launch the custom joystick controller node with a gain parameter -->
+    <node
+        pkg="joystick_controller"
+        exec="joystick_controller"
+        name="joystick_controller"
+        output="screen">
+        <param name="gain" value="$(var gain)"/> <!-- Adjust the gain value here -->
+        <param name="vel_topic" value="$(var vel_topic)"/>
+    </node>
+</launch>

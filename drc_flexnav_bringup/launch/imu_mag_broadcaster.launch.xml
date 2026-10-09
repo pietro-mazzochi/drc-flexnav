@@ -1,0 +1,6 @@
+<launch>
+    <arg name="config_sensor" default="$(find-pkg-share drc_flexnav_bringup)/config/imu_mag_sensor_broadcaster_config.yaml" />
+
+    <node name="imu_mag_sensor_broadcaster" pkg="controller_manager" exec="spawner" args="-p $(var config_sensor) --controller-manager-timeout 90 imu_sensor"  />
+
+</launch>

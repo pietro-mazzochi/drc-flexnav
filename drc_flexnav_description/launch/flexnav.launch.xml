@@ -1,0 +1,23 @@
+<launch>
+
+    <arg name="robot" default="flexnav1500" />
+    <arg name="use_sim_time" default="true" />
+    <arg name="ignition" default="false" />
+    <arg name="sim" default="true" />
+    <arg name="lightweight" default="false" />
+    <arg name="rear_lidar_sim" default="true" />
+    <arg name="use_hw_interface" default="false"/>
+
+    <node
+        name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        exec="robot_state_publisher"
+    >
+        <param
+            name="robot_description"
+            value="$(command 'xacro $(find-pkg-share drc_flexnav_description)/xacro/$(var robot).urdf.xacro sim:=$(var sim) ignition:=$(var ignition) lightweight:=$(var lightweight) rear_lidar_sim:=$(var rear_lidar_sim) ros2_control_hardware_interface:=$(var use_hw_interface)')"
+            type="str"
+        />
+        <param name="use_sim_time" value="$(var use_sim_time)" />
+    </node>
+</launch>

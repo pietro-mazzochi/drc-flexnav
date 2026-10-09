@@ -1,0 +1,28 @@
+<launch>
+
+    <arg name="max_linear_speed" default="0.2" />   <!-- m/s -->
+    <arg name="max_angular_speed" default="0.3" />  <!-- rad/s -->
+    <arg name="soft_start_time" default="2.0" />      <!-- s ( time to max speed ) -->
+    <arg name="vel_topic" default="/mrac_controller/command" />
+    <arg name="siemens_et200sp_output_topic" default="/siemens_et200sp" />
+    <!-- Launch the joy node -->
+    <node
+        pkg="joy"
+        exec="joy_node"
+        name="joy_node"
+        output="screen">
+    </node>
+
+    <!-- Launch the custom joystick controller node with a gain parameter -->
+    <node
+        pkg="industrial_joystick_controller"
+        exec="industrial_joystick_controller"
+        name="industrial_joystick_controller"
+        output="screen">
+        <param name="max_linear_speed" value="$(var max_linear_speed)"/>
+        <param name="max_angular_speed" value="$(var max_angular_speed)"/>
+        <param name="soft_start_time" value="$(var soft_start_time)"/>
+        <param name="vel_topic" value="$(var vel_topic)"/>
+        <param name="siemens_et200sp_output_topic" value="$(var siemens_et200sp_output_topic)"/>
+    </node>
+</launch>

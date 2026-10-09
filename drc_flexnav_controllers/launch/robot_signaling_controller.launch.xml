@@ -1,0 +1,6 @@
+<launch>
+	<arg name="robot_signaling_controller_config" default="$(find-pkg-share drc_flexnav_controllers)/config/robot_signaling_controller.yaml"/>
+
+	<node name="robot_signaling_controller_spawner" pkg="controller_manager" exec="spawner"
+		args="-t drc_flexnav_controllers/RobotSignalingController -p $(var robot_signaling_controller_config) robot_signaling_controller"/>
+</launch>

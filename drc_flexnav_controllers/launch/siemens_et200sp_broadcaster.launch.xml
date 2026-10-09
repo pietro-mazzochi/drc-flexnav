@@ -1,0 +1,6 @@
+<launch>
+	<arg name="siemens_broadcaster_config" default="$(find-pkg-share drc_flexnav_controllers)/config/siemens_et200sp_broadcaster.yaml"/>
+
+	<node name="siemens_et200sp_broadcaster_spawner" pkg="controller_manager" exec="spawner"
+		args="-t drc_flexnav_controllers/Siemens_ET200SP_Broadcaster -p $(var siemens_broadcaster_config) siemens_et200sp_broadcaster"/>
+</launch>

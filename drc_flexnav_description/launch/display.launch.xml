@@ -1,0 +1,28 @@
+<launch>
+    <arg name="use_sim_time" default="false" />
+    <arg name="rsp_frequency" default="100.0" />
+    <arg name="gui" default="true" />
+    <arg name="robot" default="flexnav1500" />
+    
+    <node pkg="tf2_ros" exec="static_transform_publisher" name="flexnav_origin_publisher"
+          args="0.0 0.0 0.0 0.0 0.0 0.0 map base_link 100" />
+
+    <include file="$(find-pkg-share drc_flexnav_description)/launch/flexnav.launch.xml">
+        <arg name="use_sim_time" value="$(var use_sim_time)" />
+        <arg name="publish_frequency" value="$(var rsp_frequency)" />
+    </include>
+
+    <group if="$(var gui)">
+        <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui"
+            exec="joint_state_publisher_gui" />
+    </group>
+    <group unless="$(var gui)">
+        <node name="joint_state_publisher" pkg="joint_state_publisher"
+            exec="joint_state_publisher" />
+    </group>
+
+    <node name="rviz" pkg="rviz2" exec="rviz2"
+        args="-d $(find-pkg-share drc_flexnav_description)/config/display.rviz">
+        <param name="use_sim_time" value='$(var use_sim_time)' />
+    </node>
+</launch>

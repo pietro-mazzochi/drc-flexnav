@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:arg name="ros2_control_hardware_interface" default="false"/>
+	<xacro:arg name="use_curtis_hw_interface" default="true"/>
+	<xacro:arg name="use_siemens_hw_interface" default="true"/>
+
+	<xacro:if value="$(arg ros2_control_hardware_interface)">
+    <!-- IMU Hardware Interface -->
+    <ros2_control name="ImuHardwareInterface" type="sensor">
+        <hardware>
+            <plugin>drc_flexnav_hardware/ImuLpmsCu3HardwareComponent</plugin>
+            <param name="serial_port">/dev/ttyUSB0</param>
+            <param name="identifier">1</param>
+            <param name="update_rate">250</param>
+            <param name="double_precision">true</param>
+            <param name="serial_baudrate">1000000</param>
+            <param name="export_position_interface">true</param>
+
+        </hardware>
+
+        <sensor name="imu_sensor">
+            <state_interface name="orientation.x"/>
+            <state_interface name="orientation.y"/>
+            <state_interface name="orientation.z"/>
+            <state_interface name="orientation.w"/>
+            <state_interface name="angular_velocity.x"/>
+            <state_interface name="angular_velocity.y"/>
+            <state_interface name="angular_velocity.z"/>
+            <state_interface name="linear_acceleration.x"/>
+            <state_interface name="linear_acceleration.y"/>
+            <state_interface name="linear_acceleration.z"/>
+        </sensor>
+        <sensor name="mag_sensor">
+            <state_interface name="magnetic_field.x"/>
+            <state_interface name="magnetic_field.y"/>
+            <state_interface name="magnetic_field.z"/>
+        </sensor>
+
+    </ros2_control>
+</xacro:if>
+
+<xacro:if value="$(arg ros2_control_hardware_interface)">
+  <xacro:if value="$(arg use_siemens_hw_interface)">
+     <ros2_control name="SiemensHardwareSystem" type="system">
+        <hardware>
+              <plugin>drc_flexnav_hardware/Siemens_ET200SP_Modbus_HW_Component</plugin>
+              <param name="plc_ip">192.168.10.1</param>
+              <param name="modbus_communication_port">502</param>
+              <param name="output_topic">et200sp</param>
+              <param name="input_prefix"></param>
+              <param name="plc_frequency">100</param>
+              <param name="plc_connection_timeout_ms">2000</param>
+              <param name="plc_connection_retry_ms">100</param>
+
+              <param name="left_encoder_joint_name">left_wheel_joint</param>
+              <param name="right_encoder_joint_name">right_wheel_joint</param>
+              <param name="gear_ratio">35.91</param>
+              <param name="wheel_encoder_max_counts">40000</param>
+              <param name="export_position_interface">true</param>
+
+              <param name="gpio_name">siemens_et200sp_gpio</param>
+              <!-- list of gpio interface names separated by space-->
+              <param name="gpio_interfaces">green_front_light green_rear_light red_front_light red_rear_light left_light right_light buzzer load_unload_timeout_seconds load_command ls_config</param>
+              <param name="gpio_state_interfaces">time_stamp delta_t left_encoder right_encoder left_encoder_rad right_encoder_rad left_encoder_rpm right_encoder_rpm joy_up joy_down joy_left joy_right docked_front docked_rear charging front_ls_violation rear_ls_violation reset_wait undefined_error restart_detected left_motor_error right_motor_error table_error load_error unload_error battery_error docking_error auto_sw man_sw reset_sw table_front_load_sensor table_rear_load_sensor joy_connected is_emergency_lock loaded communication_faults plc_connected last_plc_read_write_time</param>
+
+              <param name="odometer_name">odometer</param>
+              <param name="wheel_to_robot_center">0.5475</param>
+              <param name="wheel_radius">0.125</param>
+              <param name="odom_use_joint_vel">true</param>
+        </hardware>
+
+        <joint name="right_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <joint name="left_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+
+        <gpio name="siemens_et200sp_gpio">
+          <command_interface name="green_front_light"/>
+          <state_interface name="green_front_light"/>
+
+          <command_interface name="green_rear_light"/>
+          <state_interface name="green_rear_light"/>
+
+          <command_interface name="red_front_light"/>
+          <state_interface name="red_front_light"/>
+
+          <command_interface name="red_rear_light"/>
+          <state_interface name="red_rear_light"/>
+
+          <command_interface name="left_light"/>
+          <state_interface name="left_light"/>
+
+          <command_interface name="right_light"/>
+          <state_interface name="right_light"/>
+
+          <command_interface name="buzzer"/>
+          <state_interface name="buzzer"/>
+
+          <command_interface name="load_unload_timeout_seconds"/>
+          <state_interface name="load_unload_timeout_seconds"/>
+
+          <command_interface name="load_command"/>
+          <state_interface name="load_command"/>
+
+          <command_interface name="ls_config"/>
+          <state_interface name="ls_config"/>
+
+
+          <state_interface name="time_stamp"/>
+          <state_interface name="delta_t"/>
+          <state_interface name="left_encoder"/>
+          <state_interface name="right_encoder"/>
+          <state_interface name="left_encoder_rad"/>
+          <state_interface name="right_encoder_rad"/>
+          <state_interface name="left_encoder_rpm"/>
+          <state_interface name="right_encoder_rpm"/>
+          <state_interface name="joy_up"/>
+          <state_interface name="joy_down"/>
+          <state_interface name="joy_left"/>
+          <state_interface name="joy_right"/>
+          <state_interface name="docked_front"/>
+          <state_interface name="docked_rear"/>
+          <state_interface name="charging"/>
+          <state_interface name="front_ls_violation"/>
+          <state_interface name="rear_ls_violation"/>
+          <state_interface name="reset_wait"/>
+          <state_interface name="undefined_error"/>
+          <state_interface name="restart_detected"/>
+          <state_interface name="left_motor_error"/>
+          <state_interface name="right_motor_error"/>
+          <state_interface name="table_error"/>
+          <state_interface name="load_error"/>
+          <state_interface name="unload_error"/>
+          <state_interface name="battery_error"/>
+          <state_interface name="docking_error"/>
+          <state_interface name="auto_sw"/>
+          <state_interface name="man_sw"/>
+          <state_interface name="reset_sw"/>
+          <state_interface name="table_front_load_sensor"/>
+          <state_interface name="table_rear_load_sensor"/>
+          <state_interface name="joy_connected"/>
+          <state_interface name="is_emergency_lock"/>
+          <state_interface name="loaded"/>
+          <state_interface name="communication_faults"/>
+          <state_interface name="plc_connected"/>
+          <state_interface name="last_plc_read_write_time"/>
+        </gpio>
+
+        <sensor name="odometer">
+            <state_interface name="pose.position.x"/>
+            <state_interface name="pose.position.y"/>
+            <state_interface name="pose.position.z"/>
+            <state_interface name="pose.orientation.x"/>
+            <state_interface name="pose.orientation.y"/>
+            <state_interface name="pose.orientation.z"/>
+            <state_interface name="pose.orientation.w"/>
+            <state_interface name="twist.linear.x"/>
+            <state_interface name="twist.linear.y"/>
+            <state_interface name="twist.linear.z"/>
+            <state_interface name="twist.angular.x"/>
+            <state_interface name="twist.angular.y"/>
+            <state_interface name="twist.angular.z"/>
+        </sensor>
+    </ros2_control>
+  </xacro:if>
+</xacro:if>
+     <ros2_control name="HardwareSystem" type="system">
+        <hardware>
+          <xacro:unless value="$(arg ros2_control_hardware_interface)">
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+          </xacro:unless>
+
+          <xacro:if value="$(arg ros2_control_hardware_interface)">
+            <xacro:if value="$(arg use_curtis_hw_interface)">
+              <plugin>drc_flexnav_hardware/Curtis_ACF2A_Can_HW_Component</plugin>
+              <param name="left_motor_joint_name">left_motor_joint</param>
+              <param name="right_motor_joint_name">right_motor_joint</param>
+              <param name="log_level">error</param>
+              <param name="left_motor_id">37</param>
+              <param name="right_motor_id">38</param>
+              <param name="can_left_port">can0</param>
+              <param name="can_right_port">can1</param>
+              <param name="left_motor_swap_dir">0</param>
+              <param name="right_motor_swap_dir">1</param>
+              <param name="left_motor_control_mode">4</param>
+              <param name="right_motor_control_mode">4</param>
+              <param name="gear_ratio">35.91</param>
+              <param name="use_gear_ratio">false</param>
+              <param name="encoder_max_counts">4096</param>
+              <param name="export_position_interface">true</param>
+            </xacro:if>
+          </xacro:if>
+        </hardware>
+
+        <xacro:unless value="$(arg ros2_control_hardware_interface)">
+            <joint name="right_wheel_joint">
+                <command_interface name="effort">
+                    <param name="min">-201.1</param>
+                    <param name="max">201.1</param>
+                </command_interface>
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+            </joint>
+
+            <joint name="left_wheel_joint">
+                <command_interface name="effort">
+                    <param name="min">-201.1</param>
+                    <param name="max">201.1</param>
+                </command_interface>
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <state_interface name="effort" />
+            </joint>
+        </xacro:unless>
+
+        <xacro:if value="$(arg ros2_control_hardware_interface)">
+            <joint name="right_motor_joint">
+                <command_interface name="effort">
+                    <param name="min">-201.1</param>
+                    <param name="max">201.1</param>
+                </command_interface>
+                <command_interface name="velocity">
+                    <param name="min">-7.29</param>
+                    <param name="max">7.29</param>
+                </command_interface>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+                <state_interface name="effort"/>
+                <state_interface name="nmt_state"/>
+                <state_interface name="motor_configured"/>
+            </joint>
+
+            <joint name="left_motor_joint">
+                <command_interface name="effort">
+                    <param name="min">-201.1</param>
+                    <param name="max">201.1</param>
+                </command_interface>
+                <command_interface name="velocity">
+                    <param name="min">-7.29</param>
+                    <param name="max">7.29</param>
+                </command_interface>
+                <state_interface name="position"/>
+                <state_interface name="velocity"/>
+                <state_interface name="effort"/>
+                <state_interface name="nmt_state"/>
+                <state_interface name="motor_configured"/>
+            </joint>
+        </xacro:if>
+
+	<xacro:unless value="$(arg ros2_control_hardware_interface)">
+        <joint name="front_right_caster_base_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="front_right_1_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="front_right_2_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="front_left_caster_base_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="front_left_1_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="front_left_2_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="rear_right_caster_base_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="rear_right_1_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="rear_right_2_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="rear_left_caster_base_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="rear_left_1_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+
+        <joint name="rear_left_2_caster_wheel_joint">
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+</xacro:unless>
+    </ros2_control>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+            <robot_param>robot_description</robot_param>
+            <robot_param_node>robot_state_publisher</robot_param_node>
+            <parameters>$(find drc_flexnav_description)/config/controller_manager.yaml</parameters>
+        </plugin>
+
+        <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+            <frame_name>map</frame_name>
+            <body_name>base_footprint</body_name>
+            <ros>
+                <remapping>odom:=ground_truth</remapping>
+            </ros>
+            <update_rate>100</update_rate>
+        </plugin>
+    </gazebo>
+
+
+</robot>

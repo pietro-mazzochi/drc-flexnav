@@ -1,0 +1,36 @@
+<launch>
+    <arg name="pause" default="false" />
+    <arg name="gui" default="true" />
+    <arg name="use_sim_time" default="true" />
+    <arg name="robot" default="flexnav1500" />
+    <arg name="verbose" default="false"/>
+    <arg name="world" default="empty" />
+    <arg name="controller" default="joint_effort_controller" />
+    <arg name="config" default="$(find-pkg-share drc_flexnav_bringup)/config/$(var controller).yaml" />
+    <arg name="engine" default="gazebo" />
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.1"/>
+
+    <group>
+        <timer period="5.0">
+            <include file="$(find-pkg-share drc_simulation)/launch/$(var engine).launch.xml">
+                <arg name="pause" value="$(var pause)"/>
+                <arg name="gui" value="$(var gui)"/>
+                <arg name="verbose" value="$(var verbose)"/>
+                <arg name="use_sim_time" value="$(var use_sim_time)"/>
+                <arg name="world" value="$(var world)"/>
+                <arg name="robot" value="$(var robot)" />
+                <arg name="x" value="$(var x)"/>
+                <arg name="y" value="$(var y)"/>
+                <arg name="z" value="$(var z)"/>
+            </include>
+        </timer>
+
+        <include file="$(find-pkg-share drc_flexnav_bringup)/launch/$(var controller).launch.xml">
+            <arg name="config" value="$(var config)" />
+            <arg name="use_sim_time" value="$(var use_sim_time)" />
+        </include>
+    </group>
+
+</launch>

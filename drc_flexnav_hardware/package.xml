@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>drc_flexnav_hardware</name>
+  <version>0.0.0</version>
+  <description>ros2-control hardware componets for dalca flexnav robot series.</description>
+  <maintainer email="joe.scholtz@senairs.org.br">joe</maintainer>
+  <license>ISISIM</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <build_depend>ros2_control</build_depend>
+  <build_depend>curtis_acf2a_can_driver</build_depend>
+  <build_depend>siemens_et200sp_modbus_driver</build_depend>
+  <build_depend>drc_flexnav_controllers_msgs</build_depend>
+  <build_depend>imu_lpms_cu3_msgs</build_depend>
+  <build_depend>imu_lpms_cu3</build_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <depend>pluginlib</depend>
+  <depend>hardware_interface</depend>
+  <depend>odometry_arc</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

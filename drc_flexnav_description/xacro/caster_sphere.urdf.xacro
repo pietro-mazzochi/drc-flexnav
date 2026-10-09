@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find drc_flexnav_description)/xacro/inertial_macros.xacro" />
+
+    <xacro:property name="caster_radius" value="0.050" />
+    <xacro:property name="caster_width" value="${0.050}" />
+    <xacro:property name="caster_mass" value="2.25" />
+
+    <!-- Robot macros: Caster wheel -->
+    <xacro:macro name="caster_wheel" params="robot prefix parent *origin">
+        <link name="${prefix}_caster_wheel">
+            <xacro:inertial_sphere mass="${caster_mass}" radius="${caster_radius}">
+                <origin xyz="0 0 0" rpy="0.0 0.0 0.0" />
+            </xacro:inertial_sphere>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+                <geometry>
+                    <!-- <mesh filename="file://$(find drc_flexnav_description)/meshes/${robot}/caster_wheel.dae" /> -->
+                    <cylinder radius="${caster_radius}" length="${caster_width*1}" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="${pi/2} 0 0 " />
+                <geometry>
+                    <!-- <mesh filename="file://$(find drc_flexnav_description)/meshes/${robot}/caster_wheel.dae" /> -->
+                    <!-- <cylinder radius="${caster_radius}" length="${caster_width*0.025}" /> -->
+                    <sphere radius="${caster_radius}" />
+                </geometry>
+            </collision>
+        </link>
+        
+        <joint name="${prefix}_caster_wheel_joint" type="fixed">
+            <parent link="${parent}" />
+            <child link="${prefix}_caster_wheel" />
+            <xacro:insert_block name="origin" />
+            <axis xyz="0 1 0" />
+            <!-- <dynamics friction= "0.025" damping="0.05"/> -->
+            <!-- <dynamics friction= "0.001" damping="0.005"/> -->
+        </joint>
+
+        <gazebo reference="${prefix}_caster_wheel">
+            <material>Gazebo/FlatBlack</material>
+            <mu1>0.8</mu1>
+            <mu2>0.8</mu2>
+            <kp>100000000.0</kp>
+            <kd>10.0</kd>
+            <!-- <minDepth>0.005</minDepth> -->
+            <!--
+             <maxVel>0.1</maxVel>
+             <fdir1>1 0 0</fdir1>
+         -->
+        </gazebo>
+    </xacro:macro>
+
+</robot>

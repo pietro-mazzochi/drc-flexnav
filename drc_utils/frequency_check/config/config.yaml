@@ -1,0 +1,16 @@
+frequency_check:
+  ros__parameters:
+    rear_scan_topic: "/rear_scan"
+    rear_lidar_topic: "/rear_lidar"
+    front_scan_topic: "/front_scan"
+    front_lidar_topic: "/front_lidar"
+    magnetometer_topic: "/imu_sensor/magnetic_field"
+    imu_topic: "/imu_sensor/imu"
+    joint_states_topic: "/joint_states"
+    window_size: 100
+    timeout_ms: 3000
+    sensors:
+      names: ["imu", "magnetometer", "front_lidar", "front_scan", "rear_lidar", "rear_scan", "joint_states"]
+      min_frequency: [10.0, 10.0, 4.0, 4.0, 4.0, 4.0, 80.0]
+      max_frequency: [120.0, 120.0, 10.0, 10.0, 10.0, 10.0, 120.0]
+      active_sensors: ["imu", "magnetometer", "front_lidar", "rear_lidar", "joint_states"]

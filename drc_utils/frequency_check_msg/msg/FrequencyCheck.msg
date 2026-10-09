@@ -1,0 +1,9 @@
+bool alert
+bool imu_publishing
+bool mag_publishing
+bool front_lidar_publishing
+bool front_scan_publishing
+bool rear_lidar_publishing
+bool rear_scan_publishing
+bool joint_states_publishing
+string frequency_error

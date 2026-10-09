@@ -1,0 +1,6 @@
+<launch>
+	<arg name="laser_scanner_controller_config" default="$(find-pkg-share drc_flexnav_controllers)/config/laser_scanner_controller.yaml"/>
+
+	<node name="laser_scanner_controller_spawner" pkg="controller_manager" exec="spawner"
+		args="-t drc_flexnav_controllers/LaserScannerController -p $(var laser_scanner_controller_config) laser_scanner_controller"/>
+</launch>

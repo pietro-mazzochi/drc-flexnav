@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>drc_flexnav_controllers</name>
+  <version>0.0.0</version>
+  <description>Controllers for dalca flexnav robot series.</description>
+  <maintainer email="tiago.giacomelli@senairs.org.br">Tiago Giacomelli</maintainer>
+  <license>Copyright (c) 2024, ISI SIM/DALCA</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>generate_parameter_library</build_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <depend>rcpputils</depend>
+  <depend>pluginlib</depend>
+  <depend>ros2_control</depend>
+  <depend>realtime_tools</depend>
+  <depend>hardware_interface</depend>
+  <depend>controller_interface</depend>
+  <depend>pid_controllers</depend>
+  <depend>backward_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>odometry_arc</depend>
+  <depend>tf2</depend>
+  <depend>tf2_msgs</depend>
+  <depend>drc_flexnav_controllers_msgs</depend>
+  <depend>curtis_acf2a_can_driver</depend>
+
+  <build_depend>siemens_et200sp_modbus_driver_msgs</build_depend>
+
+  <test_depend>ament_cmake_gmock</test_depend>
+  <test_depend>controller_manager</test_depend>
+  <test_depend>hardware_interface_testing</test_depend>
+  <test_depend>ros2_control_test_assets</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <pluginlib plugin_description="drc_flexnav_controllers_plugin.xml"/>
+    <pluginlib plugin_description="odometry_broadcaster.xml"/>
+  </export>
+
+</package>

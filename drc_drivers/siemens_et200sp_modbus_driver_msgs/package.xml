@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>siemens_et200sp_modbus_driver_msgs</name>
+  <version>0.0.1</version>
+  <description>Integration node (amr - plc)</description>
+
+  <maintainer email="daniel.corteletti@senairs.org.br">Daniel Corteletti</maintainer>
+  <license>Copyright (c) 2024, ISI SIM/DALCA</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <depend>std_msgs</depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,11 @@
+curtis_acf2a_can_driver_node:
+  ros__parameters:
+    log_level: "info" # verbose / info / error
+    can_read_rate: 1000
+    can_write_rate: 100
+    left_motor_id: 0x25
+    right_motor_id: 0x26
+    can_port_left: "can0"
+    can_port_right: "can1"
+    left_motor_swap_dir: 0
+    right_motor_swap_dir: 1

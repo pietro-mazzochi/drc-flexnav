@@ -1,0 +1,5 @@
+std_msgs/Header header
+string command
+string mission_label
+string mission_type
+string mission_direction

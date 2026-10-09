@@ -1,0 +1,27 @@
+left_wheel_pid_controller_node:
+  ros__parameters:
+    kp: 0.655
+    ki: 0.596
+    kd: 0.0
+    dt: 0.01
+    umax: 2.5
+    umin: -2.5
+    Nfilter: 0.0
+    ref_topic: "/left_wheel_pid/reference"
+    cmd_topic: "/left_wheel_joint_effort_controller/commands"
+    measurement_topic: "/left_wheel_pid/measurement"
+    output_topic: "/left_wheel_pid/info"
+
+right_wheel_pid_controller_node:
+  ros__parameters:
+    kp: 0.678
+    ki: 0.679
+    kd: 0.0
+    dt: 0.01
+    umax: 2.5
+    umin: -2.5
+    Nfilter: 0.0
+    ref_topic: "/right_wheel_pid/reference"
+    cmd_topic: "/right_wheel_joint_effort_controller/commands"
+    measurement_topic: "/right_wheel_pid/measurement"
+    output_topic: "/right_wheel_pid/info"

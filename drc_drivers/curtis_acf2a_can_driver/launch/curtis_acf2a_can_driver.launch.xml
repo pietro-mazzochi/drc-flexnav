@@ -1,0 +1,12 @@
+<launch>
+  <arg name="config_file" default="$(find-pkg-share curtis_acf2a_can_driver)/config/curtis_acf2a_can_driver_params.yaml" />
+  <arg name="velocity_converter_config" default="$(find-pkg-share base2joint_velocity_converter)/config/joint_velocity_covnerter.yaml" />
+
+  <node name="curtis_acf2a_can_driver_node" pkg="curtis_acf2a_can_driver" exec="curtis_acf2a_can_driver_node" output="screen">
+      <param from="$(var config_file)" />
+  </node>
+
+  <include file="$(find-pkg-share base2joint_velocity_converter)/launch/velocity_converter_node.launch.xml">
+      <arg name="config_file" value="$(var velocity_converter_config)" />
+  </include>
+</launch>

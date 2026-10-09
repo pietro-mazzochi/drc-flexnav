@@ -1,0 +1,13 @@
+<launch>
+    <arg name="config_file" default="$(find-pkg-share drc_flexnav_bringup)/config/flexnav1500_pid_controller.yaml" />
+
+    <include file="$(find-pkg-share pid_controllers)/launch/digital_pid_controller.launch.xml">
+        <arg name="prefix_node_name" value="left_wheel"/>
+        <arg name="config_file" value="$(var config_file)"/>
+    </include>
+
+    <include file="$(find-pkg-share pid_controllers)/launch/digital_pid_controller.launch.xml">
+        <arg name="prefix_node_name" value="right_wheel"/>
+        <arg name="config_file" value="$(var config_file)"/>
+    </include>
+</launch>

@@ -1,0 +1,9 @@
+<library path="imu_lpms_cu3_hardware_component">
+  <class name="drc_flexnav_hardware/ImuLpmsCu3HardwareComponent"
+         type="drc_flexnav_hardware::ImuLpmsCu3HardwareComponent"
+         base_class_type="hardware_interface::SensorInterface">
+    <description>
+      The ros2_control hardware interface for LPMS-cu3 IMU sensor.
+    </description>
+  </class>
+</library>

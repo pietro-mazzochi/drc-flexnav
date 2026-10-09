@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="inertial_macros.xacro" />
+
+    <xacro:property name="chassis_length" value="1.91" />
+    <xacro:property name="chassis_width" value="1.27" />
+    <xacro:property name="chassis_height" value="0.333" />
+    <xacro:property name="chassis_mass" value="666" />
+
+    <xacro:macro name="chassis" params="robot name parent *origin">
+
+        <link name="${name}_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
+                <geometry>
+                    <mesh
+                        filename="file://$(find drc_flexnav_description)/meshes/${robot}/robot_chassi.dae" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
+                <geometry>
+                    <mesh
+                        filename="file://$(find drc_flexnav_description)/meshes/${robot}/robot_chassi.dae" />
+                </geometry>
+            </collision>
+
+            <xacro:inertial_box mass="${chassis_mass}" x="${chassis_length}" y="${chassis_width}"
+                z="${chassis_height}">
+                <origin xyz="0 0 ${0.05-chassis_height/2}" rpy="0 0 0" />
+            </xacro:inertial_box>
+        </link>
+
+        <joint name="base_joint" type="fixed">
+            <xacro:insert_block name="origin" />
+            <parent link="${parent}" />
+            <child link="${name}_link" />
+        </joint>
+
+        <!-- <gazebo reference="${name}">
+            <material>Gazebo/White</material>
+        </gazebo> -->
+
+    </xacro:macro>
+</robot>

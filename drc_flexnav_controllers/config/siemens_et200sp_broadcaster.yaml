@@ -1,0 +1,46 @@
+siemens_et200sp_broadcaster:
+  ros__parameters:
+    type: "drc_flexnav_controllers/Siemens_ET200SP_Broadcaster"
+    gpio_name: siemens_et200sp_gpio
+    gpio_interfaces:
+      - green_front_light
+      - green_rear_light
+    gpio_state_interfaces:
+      - time_stamp
+      - delta_t
+      - left_encoder
+      - right_encoder
+      - left_encoder_rad
+      - right_encoder_rad
+      - left_encoder_rpm
+      - right_encoder_rpm
+      - joy_up
+      - joy_down
+      - joy_left
+      - joy_right
+      - docked_front
+      - docked_rear
+      - charging
+      - front_ls_violation
+      - rear_ls_violation
+      - reset_wait
+      - undefined_error
+      - restart_detected
+      - left_motor_error
+      - right_motor_error
+      - table_error
+      - load_error
+      - unload_error
+      - battery_error
+      - docking_error
+      - auto_sw
+      - man_sw
+      - reset_sw
+      - table_front_load_sensor
+      - table_rear_load_sensor
+      - joy_connected
+      - is_emergency_lock
+      - loaded
+      - communication_faults
+      - plc_connected
+      - last_plc_read_write_time

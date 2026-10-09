@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="ignition" default="false"/>
+    
+    <gazebo>
+        <xacro:unless value="$(arg ignition)">
+            <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+
+                <!-- Wheel Information -->
+                <left_joint>left_wheel_joint</left_joint>
+                <right_joint>right_whee_joint</right_joint>
+                <wheel_separation> 1.08 </wheel_separation>
+                <wheel_diameter>0.25</wheel_diameter>
+
+
+                <!-- Limits -->
+                <max_wheel_torque>500</max_wheel_torque>
+                <max_wheel_acceleration>100</max_wheel_acceleration>
+
+
+                <!-- Output -->
+                <odometry_frame>odom</odometry_frame>
+                <robot_base_frame>base_link</robot_base_frame>
+
+                <publish_odom>true</publish_odom>
+                <publish_odom_tf>true</publish_odom_tf>
+                <publish_wheel_tf>true</publish_wheel_tf>
+        </xacro:unless>
+
+        <xacro:if value="$(arg ignition)">
+            <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+
+                <!-- Wheel Information -->
+                <left_joint>left_wheel_joint</left_joint>
+                <right_joint>right_whee_joint</right_joint>
+                <wheel_separation> 1.08 </wheel_separation>
+                <wheel_diameter>0.25</wheel_diameter>
+
+
+                <!-- Limits -->
+                <max_wheel_torque>500</max_wheel_torque>
+                <max_wheel_acceleration>100</max_wheel_acceleration>
+
+
+                <!-- Output -->
+                <odometry_frame>odom</odometry_frame>
+                <robot_base_frame>base_link</robot_base_frame>
+
+                <publish_odom>true</publish_odom>
+                <publish_odom_tf>true</publish_odom_tf>
+                <publish_wheel_tf>true</publish_wheel_tf>
+
+            </plugin>
+        </xacro:unless>
+    </gazebo>
+
+</robot>

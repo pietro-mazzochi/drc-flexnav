@@ -1,0 +1,7 @@
+<library path="siemens_et200sp_broadcaster">
+  <class name="drc_flexnav_controllers/Siemens_ET200SP_Broadcaster" type="drc_flexnav_controllers::Siemens_ET200SP_Broadcaster" base_class_type="controller_interface::ControllerInterface">
+  <description>
+    Siemens ET200SP ros2_control controller.
+  </description>
+  </class>
+</library>

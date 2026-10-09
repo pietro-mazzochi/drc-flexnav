@@ -1,0 +1,12 @@
+<library path="drc_flexnav_controllers">
+  <class name="drc_flexnav_controllers/DynamicsController" type="drc_flexnav_controllers::DynamicsController" base_class_type="controller_interface::ControllerInterface">
+  <description>
+    DynamicsController ros2_control controller.
+  </description>
+  </class>
+  <class name="drc_flexnav_controllers/MRACController" type="drc_flexnav_controllers::MRACController" base_class_type="controller_interface::ControllerInterface">
+  <description>
+    MRACController ros2_control controller.
+  </description>
+  </class>
+</library>
